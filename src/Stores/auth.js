@@ -233,6 +233,26 @@ export const useAuthStore = defineStore("auth", {
       }
     },
 
+    // Fiuncion para iniciar sesioón con Google 
+    async loginWithGoogle() {
+      const poput = window.open(
+        `https://axoweb-digital-server-production.up.railway.app/auth/google`,
+        "_blank",
+        "width=600,height=600"
+      );
+
+      window.addEventListener("message", (event) => {
+        const token = event.data;
+        if (token) {
+          localStorage.setItem("token", token);
+          console.log("Token recibido:", token);
+          this.token = token;
+          this.getUser();
+          router.push("/");
+        }
+      });
+    },
+
     logout() {
       this.token = null;
       this.user = null;

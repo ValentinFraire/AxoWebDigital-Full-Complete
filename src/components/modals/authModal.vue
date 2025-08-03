@@ -33,7 +33,7 @@
             </p>
           </div>
 
-          <button class="btn btn-google w-100 mb-4 position-relative">
+          <button @click="authStore.loginWithGoogle" class="btn btn-google w-100 mb-4 position-relative">
             <i class="bi bi-google position-absolute start-4"></i>
             Continuar con Google
           </button>
@@ -63,7 +63,12 @@
 import { ref } from "vue";
 import LoginForm from "../LoginForm.vue";
 import RegisterForm from "../RegisterForm.vue";
-$emits(["close"]);
+import { useAuthStore } from "@/Stores/auth.js";
+
+const authStore = useAuthStore();
+
+
+
 
 defineProps(["show"]);
 const isLogin = ref(true);
